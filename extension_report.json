@@ -1,0 +1,58 @@
+{
+    "composer": {
+        "name": "talan-hdf\/node-link-visualizer",
+        "description": "Displays internal page links as nodes and arrows using d3.js",
+        "version": "",
+        "autoload": {
+            "psr-4": {
+                "TalanHdf\\NodeLinkVisualizer\\": "Classes\/"
+            }
+        },
+        "psr-4": {
+            "TalanHdf\\NodeLinkVisualizer\\": "Classes\/"
+        }
+    },
+    "php_files": [
+        {
+            "path": "NodeLinkVisualizer\/Classes\/Controller\/NodeLinkVisualizerController.php",
+            "namespace": "",
+            "class": "->",
+            "functions": [
+                "showAction",
+                "getNodes",
+                "$page",
+                "getLinks"
+            ]
+        },
+        {
+            "path": "NodeLinkVisualizer\/Configuration\/TCA\/Overrides\/tt_content.php",
+            "namespace": "",
+            "class": "",
+            "functions": []
+        },
+        {
+            "path": "NodeLinkVisualizer\/ext_emconf.php",
+            "namespace": "",
+            "class": "",
+            "functions": []
+        },
+        {
+            "path": "NodeLinkVisualizer\/ext_localconf.php",
+            "namespace": "",
+            "class": "=>",
+            "functions": []
+        }
+    ],
+    "other_files": [
+        "NodeLinkVisualizer\/Configuration\/FlexForms\/flexform_nodelinkvisualizer.xml",
+        "NodeLinkVisualizer\/Resources\/Private\/Language\/locallang_db.xlf",
+        "NodeLinkVisualizer\/Resources\/Public\/JavaScript\/NodeLinkVisualizer.js",
+        "NodeLinkVisualizer\/composer.json"
+    ],
+    "typoscript_files": [
+        "NodeLinkVisualizer\/Configuration\/TypoScript\/setup.typoscript"
+    ],
+    "template_files": [
+        "NodeLinkVisualizer\/Resources\/Private\/Templates\/NodeLinkVisualizer\/Show.html"
+    ]
+}

@@ -1,20 +1,31 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
-<f:section name="content">
-    <div id="node-link-visualizer" data-nodes="{nodes}" data-links="{links}"></div>
+<f:section name="Main">
+    <h1>Node Link Visualizer</h1>
+    
+    <div id="debug-info">
+        <p>Nombre de nœuds : {f:count(subject: nodes)}</p>
+        <p>Nombre de liens : {f:count(subject: links)}</p>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('node-link-visualizer');
-            const nodes = JSON.parse(container.dataset.nodes);
-            const links = JSON.parse(container.dataset.links);
+    <div id="debug-messages"></div>
 
-            // D3.js visualization code will be added here
-            // This is a placeholder for the actual D3.js implementation
-            console.log('Nodes:', nodes);
-            console.log('Links:', links);
-        });
-    </script>
+    <f:if condition="{nodes} && {links}">
+        <f:then>
+            <div id="node-link-visualizer" 
+                 data-nodes="{nodes -> f:format.raw()}" 
+                 data-links="{links -> f:format.raw()}"
+                 data-display-mode="{displayMode}">
+            </div>
+            <f:asset.script identifier="d3js" src="https://d3js.org/d3.v7.min.js" />
+            <f:asset.script identifier="node-link-visualizer" src="EXT:node_link_visualizer/Resources/Public/JavaScript/node-link-visualizer.js" />
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning">
+                <f:translate key="error.noData">No data available for visualization.</f:translate>
+            </div>
+        </f:else>
+    </f:if>
 </f:section>
 </html>

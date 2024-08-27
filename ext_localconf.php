@@ -1,14 +1,17 @@
 <?php
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+use TalanHdf\NodeLinkVisualizer\Controller\NodeLinkVisualizerController;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+ExtensionUtility::configurePlugin(
     'NodeLinkVisualizer',
     'Pi1',
     [
-        \TalanHdf\NodeLinkVisualizer\Controller\NodeLinkVisualizerController::class => 'show'
+        NodeLinkVisualizerController::class => 'show'
     ],
     // non-cacheable actions
     [
-        \TalanHdf\NodeLinkVisualizer\Controller\NodeLinkVisualizerController::class => 'show'
+        NodeLinkVisualizerController::class => 'show'
     ]
 );

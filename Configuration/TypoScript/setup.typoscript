@@ -1,19 +1,19 @@
-plugin.tx_nodelinkvisualizer_pi1 {
-    view {
-        templateRootPaths.0 = EXT:node_link_visualizer/Resources/Private/Templates/
-        partialRootPaths.0 = EXT:node_link_visualizer/Resources/Private/Partials/
-        layoutRootPaths.0 = EXT:node_link_visualizer/Resources/Private/Layouts/
-    }
-    persistence {
-        storagePid = {$plugin.tx_nodelinkvisualizer_pi1.persistence.storagePid}
-    }
-}
+plugin.tx_nodelinkvisualizer {
+       view {
+           templateRootPaths.0 = EXT:NodeLinkVisualizer/Resources/Private/Templates/
+           partialRootPaths.0 = EXT:NodeLinkVisualizer/Resources/Private/Partials/
+           layoutRootPaths.0 = EXT:NodeLinkVisualizer/Resources/Private/Layouts/
+       }
+       persistence {
+           storagePid = {$plugin.tx_nodelinkvisualizer.persistence.storagePid}
+       }
+   }
 
 page {
     includeJSFooter {
         d3js = https://d3js.org/d3.v7.min.js
         d3js.external = 1
-        nodelinkvisualizer = EXT:node_link_visualizer/Resources/Public/JavaScript/NodeLinkVisualizer.js
+        nodelinkvisualizer = EXT:NodeLinkVisualizer/Resources/Public/JavaScript/node-link-visualizer.js
     }
 }
 
