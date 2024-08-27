@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2023-04-21T15:00:00Z" product-name="node_link_visualizer">
+        <header/>
+        <body>
+            <trans-unit id="flexforms_tab.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.displayMode">
+                <source>Display Mode</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.displayMode.basic">
+                <source>Basic</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.displayMode.advanced">
+                <source>Advanced</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
