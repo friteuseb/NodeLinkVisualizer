@@ -9,4 +9,5 @@ services:
 
   TalanHdf\NodeLinkVisualizer\Controller\NodeLinkVisualizerController:
     public: true
-    tags: ['controller.service_controller']
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'

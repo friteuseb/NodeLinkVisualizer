@@ -7,18 +7,42 @@
     <p>Nombre de nœuds : {f:count(subject: nodes)}</p>
     <p>Nombre de liens : {f:count(subject: links)}</p>
     
-    <h2>Settings:</h2>
-    <f:debug>{settings}</f:debug>
-    
-    <h2>Nodes:</h2>
-    <f:debug>{nodes}</f:debug>
-    
-    <h2>Links:</h2>
-    <f:debug>{links}</f:debug>
+    <h2>Liens analysés :</h2>
+    <p>Nombre de liens analysés : {f:count(subject: analyzedLinks)}</p>
+    <ul>
+        <f:for each="{analyzedLinks}" as="link">
+            <li>
+                <strong>{link.text}</strong> - 
+                <a href="{link.href}" target="_blank">{link.href}</a> 
+                ({link.type})
+            </li>
+        </f:for>
+    </ul>
+
+    <h2>Nœuds :</h2>
+    <ul>
+        <f:for each="{nodes}" as="node">
+            <li>{node.name} (ID: {node.id})</li>
+        </f:for>
+    </ul>
+
+    <h2>Liens (méthode getLinks) :</h2>
+    <ul>
+        <f:for each="{links}" as="link">
+            <li>
+                Source: {link.source} - 
+                Target: {link.target}
+            </li>
+        </f:for>
+    </ul>
+
+    <h2>Contenu du log :</h2>
+    <pre>{logContent}</pre>
 
     <div id="node-link-visualizer" 
          data-nodes='{f:format.json(value: nodes)}' 
          data-links='{f:format.json(value: links)}' 
+         data-analyzed-links='{f:format.json(value: analyzedLinks)}'
          data-display-mode="{displayMode}">
     </div>
 </f:section>
