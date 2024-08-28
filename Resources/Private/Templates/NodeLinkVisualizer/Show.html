@@ -3,30 +3,23 @@
 
 <f:section name="content">
     <h1>Node Link Visualizer</h1>
+    <p>Debug: {debug}</p>
+    <p>Nombre de nœuds : {f:count(subject: nodes)}</p>
+    <p>Nombre de liens : {f:count(subject: links)}</p>
     
-    <div id="debug-info">
-        <f:debug>{_all}</f:debug>
-        <p>Nombre de nœuds : {f:count(subject: nodes)}</p>
-        <p>Nombre de liens : {f:count(subject: links)}</p>
+    <h2>Settings:</h2>
+    <f:debug>{settings}</f:debug>
+    
+    <h2>Nodes:</h2>
+    <f:debug>{nodes}</f:debug>
+    
+    <h2>Links:</h2>
+    <f:debug>{links}</f:debug>
+
+    <div id="node-link-visualizer" 
+         data-nodes='{f:format.json(value: nodes)}' 
+         data-links='{f:format.json(value: links)}' 
+         data-display-mode="{displayMode}">
     </div>
-
-    <div id="debug-messages"></div>
-
-    <f:if condition="{nodes} && {links}">
-        <f:then>
-            <div id="node-link-visualizer" 
-                 data-nodes="{nodes -> f:format.raw()}" 
-                 data-links="{links -> f:format.raw()}"
-                 data-display-mode="{displayMode}">
-            </div>
-            <f:asset.script identifier="d3js" src="https://d3js.org/d3.v7.min.js" />
-            <f:asset.script identifier="node-link-visualizer" src="EXT:node_link_visualizer/Resources/Public/JavaScript/node-link-visualizer.js" />
-        </f:then>
-        <f:else>
-            <div class="alert alert-warning">
-                <f:translate key="error.noData">No data available for visualization.</f:translate>
-            </div>
-        </f:else>
-    </f:if>
 </f:section>
 </html>
