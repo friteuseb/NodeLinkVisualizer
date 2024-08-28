@@ -1,41 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const visualizer = document.getElementById('node-link-visualizer');
-    const debugMessages = document.getElementById('debug-messages');
+    const container = document.getElementById('node-link-visualizer');
+    const nodes = JSON.parse(container.dataset.nodes);
+    const links = JSON.parse(container.dataset.links);
 
-    function debug(message) {
-        if (debugMessages) {
-            const p = document.createElement('p');
-            p.textContent = message;
-            debugMessages.appendChild(p);
-        }
-        console.log(message);
-    }
-
-    if (!visualizer) {
-        debug("Élément visualizer non trouvé");
-        return;
-    }
-
-    let nodes, links, displayMode;
-    try {
-        nodes = JSON.parse(visualizer.dataset.nodes);
-        links = JSON.parse(visualizer.dataset.links);
-        displayMode = visualizer.dataset.displayMode;
-    } catch (error) {
-        debug("Erreur lors du parsing des données : " + error.message);
-        return;
-    }
-
-    if (!Array.isArray(nodes) || !Array.isArray(links)) {
-        debug("Les données de nœuds ou de liens ne sont pas des tableaux valides");
-        return;
-    }
-
-    debug(`Nombre de nœuds : ${nodes.length}, Nombre de liens : ${links.length}`);
-
-    // Set up SVG
     const width = 800;
     const height = 600;
+
     const svg = d3.select('#node-link-visualizer')
         .append('svg')
         .attr('width', width)
@@ -46,53 +16,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const g = svg.append('g');
 
-    debug("SVG créé avec zoom");
-
-    // Create a force simulation
     const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink(links).id(d => d.id))
-        .force('charge', d3.forceManyBody())
+        .force('charge', d3.forceManyBody().strength(-300))
         .force('center', d3.forceCenter(width / 2, height / 2));
 
-    debug("Simulation de force créée");
-
-    // Draw links
     const link = g.append('g')
         .selectAll('line')
         .data(links)
         .enter().append('line')
         .attr('stroke', '#999')
-        .attr('stroke-opacity', 0.6);
+        .attr('stroke-opacity', 0.6)
+        .attr('stroke-width', 2);
 
-    debug("Liens dessinés");
-
-    // Draw nodes
     const node = g.append('g')
-        .selectAll('circle')
+        .selectAll('g')
         .data(nodes)
-        .enter().append('circle')
-        .attr('r', 5)
-        .attr('fill', '#69b3a2')
+        .enter().append('g')
         .call(d3.drag()
             .on('start', dragstarted)
             .on('drag', dragged)
             .on('end', dragended));
 
-    debug("Nœuds dessinés avec fonction de glisser-déposer");
+    node.append('circle')
+        .attr('r', 5)
+        .attr('fill', '#69b3a2');
 
-    // Add labels to nodes
-    const label = g.append('g')
-        .selectAll('text')
-        .data(nodes)
-        .enter().append('text')
-        .text(d => d.name)
-        .attr('font-size', 12)
+    node.append('text')
         .attr('dx', 12)
-        .attr('dy', 4);
+        .attr('dy', '.35em')
+        .text(d => d.name);
 
-    debug("Étiquettes ajoutées");
+    node.append('title')
+        .text(d => d.name);
 
-    // Update positions on each tick of the simulation
     simulation.on('tick', () => {
         link
             .attr('x1', d => d.source.x)
@@ -101,17 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr('y2', d => d.target.y);
 
         node
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
-
-        label
-            .attr('x', d => d.x)
-            .attr('y', d => d.y);
+            .attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
-    debug("Simulation démarrée");
-
-    // Add drag functions
     function dragstarted(event, d) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
@@ -129,12 +78,43 @@ document.addEventListener('DOMContentLoaded', function() {
         d.fy = null;
     }
 
-    // Add hover effects
+    // Hover effect
     node.on('mouseover', function(event, d) {
-        d3.select(this).attr('r', 8);
+        d3.select(this).select('circle').attr('r', 8);
+        // Add more detailed information here
     }).on('mouseout', function(event, d) {
-        d3.select(this).attr('r', 5);
+        d3.select(this).select('circle').attr('r', 5);
     });
 
-    debug("Effets de survol ajoutés");
+    // Simple legend
+    const legend = svg.append('g')
+        .attr('transform', 'translate(10, 10)');
+
+    legend.append('circle')
+        .attr('r', 5)
+        .attr('fill', '#69b3a2')
+        .attr('cx', 10)
+        .attr('cy', 10);
+
+    legend.append('text')
+        .attr('x', 20)
+        .attr('y', 15)
+        .text('Page');
+
+    // Basic search functionality
+    const searchInput = d3.select('#node-link-visualizer')
+        .insert('input', ':first-child')
+        .attr('type', 'text')
+        .attr('placeholder', 'Search nodes...')
+        .style('margin-bottom', '10px');
+
+    searchInput.on('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        node.each(function(d) {
+            const isMatch = d.name.toLowerCase().includes(searchTerm);
+            d3.select(this).select('circle')
+                .attr('fill', isMatch ? 'red' : '#69b3a2')
+                .attr('r', isMatch ? 8 : 5);
+        });
+    });
 });

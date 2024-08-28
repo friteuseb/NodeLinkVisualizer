@@ -1,5 +1,7 @@
 <?php
 
+$_EXTKEY = 'node_link_visualizer';
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Node Link Visualizer',
     'description' => 'Displays internal page links as nodes and arrows using d3.js',

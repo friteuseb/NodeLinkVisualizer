@@ -1,5 +1,5 @@
 {
-    "name": "talan-hdf/node-link-visualizer",
+    "name": "talan-hdf/node_link_visualizer",
     "type": "typo3-cms-extension",
     "description": "Displays internal page links as nodes and arrows using d3.js",
     "authors": [

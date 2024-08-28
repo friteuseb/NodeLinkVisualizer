@@ -1,12 +1,12 @@
-# customsubcategory=node_link_visualizer=NodeLinkVisualizer
+# customsubcategory=node_link_visualizer=node-link-visualizer
 plugin.tx_nodelinkvisualizer {
     view {
         # cat=plugin.tx_nodelinkvisualizer/file; type=string; label=Path to template root (FE)
-        templateRootPath = EXT:NodeLinkVisualizer/Resources/Private/Templates/
+        templateRootPath = EXT:node-link-visualizer/Resources/Private/Templates/
         # cat=plugin.tx_nodelinkvisualizer/file; type=string; label=Path to template partials (FE)
-        partialRootPath = EXT:NodeLinkVisualizer/Resources/Private/Partials/
+        partialRootPath = EXT:node-link-visualizer/Resources/Private/Partials/
         # cat=plugin.tx_nodelinkvisualizer/file; type=string; label=Path to template layouts (FE)
-        layoutRootPath = EXT:NodeLinkVisualizer/Resources/Private/Layouts/
+        layoutRootPath = EXT:node-link-visualizer/Resources/Private/Layouts/
     }
     persistence {
         # cat=plugin.tx_nodelinkvisualizer//a; type=string; label=Default storage PID

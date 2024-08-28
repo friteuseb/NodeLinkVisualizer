@@ -5,16 +5,16 @@
         "version": "",
         "autoload": {
             "psr-4": {
-                "TalanHdf\\NodeLinkVisualizer\\": "Classes\/"
+                "TalanHdf\\node-link-visualizer\\": "Classes\/"
             }
         },
         "psr-4": {
-            "TalanHdf\\NodeLinkVisualizer\\": "Classes\/"
+            "TalanHdf\\node-link-visualizer\\": "Classes\/"
         }
     },
     "php_files": [
         {
-            "path": "NodeLinkVisualizer\/Classes\/Controller\/NodeLinkVisualizerController.php",
+            "path": "node-link-visualizer\/Classes\/Controller\/node-link-visualizerController.php",
             "namespace": "",
             "class": "->",
             "functions": [
@@ -25,34 +25,34 @@
             ]
         },
         {
-            "path": "NodeLinkVisualizer\/Configuration\/TCA\/Overrides\/tt_content.php",
+            "path": "node-link-visualizer\/Configuration\/TCA\/Overrides\/tt_content.php",
             "namespace": "",
             "class": "",
             "functions": []
         },
         {
-            "path": "NodeLinkVisualizer\/ext_emconf.php",
+            "path": "node-link-visualizer\/ext_emconf.php",
             "namespace": "",
             "class": "",
             "functions": []
         },
         {
-            "path": "NodeLinkVisualizer\/ext_localconf.php",
+            "path": "node-link-visualizer\/ext_localconf.php",
             "namespace": "",
             "class": "=>",
             "functions": []
         }
     ],
     "other_files": [
-        "NodeLinkVisualizer\/Configuration\/FlexForms\/flexform_nodelinkvisualizer.xml",
-        "NodeLinkVisualizer\/Resources\/Private\/Language\/locallang_db.xlf",
-        "NodeLinkVisualizer\/Resources\/Public\/JavaScript\/NodeLinkVisualizer.js",
-        "NodeLinkVisualizer\/composer.json"
+        "node-link-visualizer\/Configuration\/FlexForms\/flexform_nodelinkvisualizer.xml",
+        "node-link-visualizer\/Resources\/Private\/Language\/locallang_db.xlf",
+        "node-link-visualizer\/Resources\/Public\/JavaScript\/node-link-visualizer.js",
+        "node-link-visualizer\/composer.json"
     ],
     "typoscript_files": [
-        "NodeLinkVisualizer\/Configuration\/TypoScript\/setup.typoscript"
+        "node-link-visualizer\/Configuration\/TypoScript\/setup.typoscript"
     ],
     "template_files": [
-        "NodeLinkVisualizer\/Resources\/Private\/Templates\/NodeLinkVisualizer\/Show.html"
+        "node-link-visualizer\/Resources\/Private\/Templates\/node-link-visualizer\/Show.html"
     ]
 }

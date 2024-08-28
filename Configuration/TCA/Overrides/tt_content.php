@@ -2,7 +2,7 @@
 defined('TYPO3') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'NodeLinkVisualizer',
+    'node_link_visualizer',
     'Pi1',
     'Node Link Visualizer'
 );

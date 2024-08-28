@@ -1,29 +1,31 @@
 <?php
-   namespace TalanHdf\NodeLinkVisualizer\Controller;
+namespace TalanHdf\NodeLinkVisualizer\Controller;
 
-   use Psr\Http\Message\ResponseInterface;
-   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
-   use TYPO3\CMS\Core\Database\ConnectionPool;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
-   class NodeLinkVisualizerController extends ActionController
-   {
-       public function showAction(): ResponseInterface
-       {
-           $displayMode = $this->settings['displayMode'] ?? 'basic';
-           $parentPage = (int)($this->settings['parentPage'] ?? 0);
-           $recursionLevel = (int)($this->settings['recursionLevel'] ?? 1);
+class NodeLinkVisualizerController extends ActionController
+{
+    public function showAction(): ResponseInterface
+    {
+        $displayMode = $this->settings['displayMode'] ?? 'basic';
+        $parentPage = (int)($this->settings['parentPage'] ?? 0);
+        $recursionLevel = (int)($this->settings['recursionLevel'] ?? 1);
 
-           $nodes = $this->getNodes($parentPage, $recursionLevel);
-           $links = $this->getLinks($parentPage, $recursionLevel);
+        $nodes = $this->getNodes($parentPage, $recursionLevel);
+        $links = $this->getLinks($parentPage, $recursionLevel);
 
-           $this->view->assign('nodes', json_encode($nodes));
-           $this->view->assign('links', json_encode($links));
-           $this->view->assign('displayMode', $displayMode);
+        $this->view->assign('nodes', $nodes);
+        $this->view->assign('links', $links);
+        $this->view->assign('displayMode', $displayMode);
+        $this->view->assign('debug', 'Le contrôleur fonctionne !');
 
-           return $this->htmlResponse();
-       }
+        return $this->htmlResponse();
+    }
 
+    
        private function getNodes(int $parentPage, int $recursionLevel): array
        {
            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
